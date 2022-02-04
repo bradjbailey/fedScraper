@@ -36,7 +36,7 @@ print(url)
 ## create list of urls
 start = url.find("start=")
 ## 'start=0' is  7 characters
-## want list with start = 0, start = 100, start = 200, etc up to numResults[-2]
+## want list with start = 0, start = 100, start = 200, etc up to numResults[-2] (rounded down to nearest 100)
 numPages = int(totRes/100)
 print(numPages)
 
@@ -50,5 +50,13 @@ for i in range(1, numPages+1, 1):
 print(urlList)
 
 ## downloader - for each page, download all PDFs and HTML files as raw text
+## ultimate dataset will have entries |TYPE|DATE|TEXT|
+## wrinkle: documents are in either HTML or PDF, so need to handle both
 
-## main - take a url from FOMC adv search and return text data
+## implementation sketch:
+## for entires in urlList:
+## for each search item returned (100 per page):
+## grab link to document, type of document, and date
+## for each link, convert to raw text (handle html vs pdf here)
+
+## main - take a url from FOMC adv search and return text dataset with type, date, and text
